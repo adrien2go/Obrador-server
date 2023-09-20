@@ -76,7 +76,32 @@ cette section nous verrons brièvement les interfaces réseaux
 verrons dans un second temps le principe de ‘conteneurs’ de
 Proxmox et de docker (Logiciel qui permet de créer des ‘conteneurs’
 tout comme Proxmox, mais à l’intérieur d’un conteneur Proxmox).</span></font></p>
-<h1 class="western"><a name="__RefHeading___Toc127_1033052965"></a>2.<font face="Ubuntu"><span lang="fr-FR">Découverte
+<h1 class="western">2.<font face="Ubuntu"><span lang="fr-FR">U</span></font><font face="Ubuntu"><span lang="fr-FR">n
+peu de théorie</span></font></h1>
+<h3 lang="fr-FR" class="western">1.Le Réseau avec les IPs (adresses
+machines) et les ports</h3>
+<p><font face="Ubuntu"><span lang="fr-FR">Pour faire simple on peut
+faire l’analogie avec les adresses des maisons.<br/>
+Dans un réseau
+comme dans une rue, on va avoir des numéros pour désigner </span><span lang="fr-FR">une
+maison. Les adresses PC sont de cette forme 255.255.255.255, on y
+ajoute souvent le masque de sous réseau pour savoir si un PC à le
+droit de communiquer avec un autre PC, un peu comme dans des rues
+différentes dans notre village&nbsp;: 255.255.255.255/24</span></font></p>
+<p><font face="Ubuntu"><span lang="fr-FR">Les ports sont comme les
+portes d’une maison, mais pour notre pc il en a 65000. Si l’on
+veut que notre PC/Serveur communique avec l’extérieur il faut
+ouvrir des ports de notre box internet et les redirigés vers les
+ports de notre Serveur en les ouvrants aussi (souvent déjà
+ouverts).</span></font></p>
+<p><font face="Ubuntu"><span lang="fr-FR">Il y aussi les adresses
+MAC, nous ne </span></font><font face="Ubuntu"><span lang="fr-FR">rentrerons
+</span></font><font face="Ubuntu"><span lang="fr-FR">pas </span></font><font face="Ubuntu"><span lang="fr-FR">dans
+les détails ici</span></font><font face="Ubuntu"><span lang="fr-FR">,
+</span></font><font face="Ubuntu"><span lang="fr-FR">mais parfois il
+est utile d’associer une adresse MAC à une adresse IP dans les Box
+internet.</span></font></p>
+<h1 class="western"><a name="__RefHeading___Toc127_1033052965"></a>3.<font face="Ubuntu"><span lang="fr-FR">Découverte
 du </span></font><font face="Ubuntu"><span lang="fr-FR">S</span></font><font face="Ubuntu"><span lang="fr-FR">hell
 </span></font><font face="Ubuntu"><font size="5" style="font-size: 18pt"><span lang="fr-FR"><b>Unix</b></span></font></font></h1>
 <h2 class="western"><a name="__RefHeading___Toc129_1033052965"></a>1.<font face="Ubuntu"><span lang="fr-FR">Qu’est-ce
@@ -98,7 +123,10 @@ lancer</span></font><font face="Ubuntu"><span lang="fr-FR"> des
 scripts Shell, afin d’exécuter une suite d’instructions (cela
 permet d’automatiser une suite d’actions sur le serveur sans
 devoir tout taper à la main à chaque fois dans le terminal).</span></font></p>
-<h2 class="western"><a name="__RefHeading___Toc365_3842791473"></a>2.<font face="Ubuntu"><font size="5" style="font-size: 16pt"><span lang="fr-FR"><b>R</b></span></font></font><font face="Ubuntu"><font size="5" style="font-size: 16pt"><span lang="fr-FR"><b>edirections
+<h2 lang="fr-FR" class="western">2.Quelques commandes indispensables.</h2>
+<p><font face="Ubuntu"><font face="Ubuntu"><span lang="fr-FR">Ici&nbsp;:
+<a href="https://www.tutoriels-video.fr/tutoriel/console/console_partie1_v2.pdf">https://www.tutoriels-video.fr/tutoriel/console/console_partie1_v2.pdf</a></span></font></font></p>
+<h2 class="western"><a name="__RefHeading___Toc365_3842791473"></a>3.<font face="Ubuntu"><font size="5" style="font-size: 16pt"><span lang="fr-FR"><b>R</b></span></font></font><font face="Ubuntu"><font size="5" style="font-size: 16pt"><span lang="fr-FR"><b>edirections
 des ports vers les services concernés.</b></span></font></font></h2>
 <h3 class="western"><a name="__RefHeading___Toc153_1033052965"></a>1.<font face="Ubuntu"><font size="5" style="font-size: 16pt"><span lang="fr-FR"><b>Si
 pas de Box internet</b></span></font></font><font face="Ubuntu"><span lang="fr-FR">.</span></font></h3>
@@ -112,15 +140,23 @@ va éditer le fichier de redirections des ports de Proxmox vers les
 	<li><p><font face="Ubuntu"><span lang="fr-FR">S</span></font><font face="Ubuntu"><span lang="fr-FR">e
 	connecter au serveur&nbsp;:<br/>
 Via SSH par terminal ou via
-	l’interface Web du serveur.<br/>
-Si connecté via le Web,
-	</span></font><font face="Ubuntu"><span lang="fr-FR">sélectionner
-	le ‘PVE’, puis </span></font><font face="Ubuntu"><span lang="fr-FR">ouvrir
-	</span></font><font face="Ubuntu"><span lang="fr-FR">l’interface</span></font><font face="Ubuntu"><span lang="fr-FR">
-	‘&gt;_Shell’ → ‘noVNC’ </span></font><font face="Ubuntu"><span lang="fr-FR">(terminal
-	via le Web),<br/>
+	l’interface Web du serveur.</span></font></p>
+	<ul>
+		<li><p><font face="Ubuntu"><span lang="fr-FR">Via SSH&nbsp;:<br/>
+Taper
+		dans un terminal&nbsp;: </span></font><font color="#ffffff"><font face="Ubuntu"><span lang="fr-FR"><span style="background: #000000">ssh
+		username@255.255.255.255 -p 22<br/>
+</span></span></font></font><font face="Ubuntu"><span lang="fr-FR">Il
+		faut ensuite entrer le mot de passe et vous êtes connecté.</span></font></p>
+		<li><p><font face="Ubuntu"><span lang="fr-FR">Si connecté via le
+		Web, </span></font><font face="Ubuntu"><span lang="fr-FR">sélectionner
+		le ‘PVE’, puis </span></font><font face="Ubuntu"><span lang="fr-FR">ouvrir
+		</span></font><font face="Ubuntu"><span lang="fr-FR">l’interface</span></font><font face="Ubuntu"><span lang="fr-FR">
+		‘&gt;_Shell’ → ‘noVNC’ </span></font><font face="Ubuntu"><span lang="fr-FR">(terminal
+		via le Web),<br/>
 </span></font><font face="Ubuntu"><span lang="fr-FR">Vous
-	êtes maintenant connecté au serveur.</span></font></p>
+		êtes maintenant connecté au serveur.</span></font></p>
+	</ul>
 	<li><p><font face="Ubuntu"><span lang="fr-FR">T</span></font><font face="Ubuntu"><span lang="fr-FR">apez
 	</span></font><font color="#ffffff"><font face="Ubuntu"><span lang="fr-FR"><span style="background: #000000">pwd</span></span></font></font><font color="#000000"><font face="Ubuntu"><span lang="fr-FR"><span style="background: #ffffff">
 	</span></span></font></font><font color="#000000"><font face="Ubuntu"><span lang="fr-FR"><span style="background: #ffffff">pour
@@ -163,7 +199,7 @@ fournisseur, mais pas dans les principes.</span></span></font></font></p>
 	</p>
 </ul>
 <h1 lang="fr-FR" class="western"><a name="__RefHeading___Toc247_1033052965"></a>
-3.Création d’un conteneur (container) Proxmox avec Wordpress à
+4.Création d’un conteneur (container) Proxmox avec Wordpress à
 l’intérieur.</h1>
 <p><font face="Ubuntu"><span lang="fr-FR">Dans ce </span></font><font face="Ubuntu"><span lang="fr-FR">chapitre</span></font><font face="Ubuntu"><span lang="fr-FR">
 nous allons créer un conteneur avec Wordpress afin de créer </span></font><font face="Ubuntu"><span lang="fr-FR">le</span></font><font face="Ubuntu"><span lang="fr-FR">
@@ -211,7 +247,7 @@ URL (de services Web) vers des ports du serveur.</font></p>
 	‘Nom d’hôte’&nbsp;: ‘Proxy’, décocher ‘Conteneur non
 	privilégié’, mettre un mot de passe, puis Suivant.</font></p>
 	<li><p lang="fr-FR"><font face="Ubuntu">Choisir le Modèle ‘Debian
-	12’, puis Suivant.</font></p>
+	11’, puis Suivant.</font></p>
 	<li><p lang="fr-FR"><font face="Ubuntu">Laisser le disque dur par
 	défaut, puis Suivant.</font></p>
 	<li><p lang="fr-FR"><font face="Ubuntu">Laisser un cœur de
@@ -228,14 +264,15 @@ URL (de services Web) vers des ports du serveur.</font></p>
 ‘101 (Proxy)’ devrait apparaître sur la gauche de l’interface
 Web de Proxmox. Vous pouvez cliquer dessus afin d’afficher le
 Résumé du conteneur.</font></p>
-<p lang="fr-FR"><font face="Ubuntu">On va lancer un terminal afin
-d’installer et configurer notre proxy.</font></p>
+<p lang="fr-FR"><font face="Ubuntu">O<img src="Formation-obrador_html_ea5b3ecf7fce4673.gif" name="Image1" align="left" width="665" height="296" border="0"/>
+n
+va lancer un terminal afin d’installer et configurer notre proxy.</font></p>
 <p lang="fr-FR"><br/>
 <br/>
 
 </p>
 <div title="footer"><p align="right" style="margin-top: 0.5cm; margin-bottom: 0cm; line-height: 100%">
-	Page <span style="background: #c0c0c0"><sdfield type=PAGE subtype=RANDOM format=PAGE>4</sdfield></span>/<span style="background: #c0c0c0"><sdfield type=DOCSTAT subtype=PAGE format=PAGE>4</sdfield></span></p>
+	Page <span style="background: #c0c0c0"><sdfield type=PAGE subtype=RANDOM format=PAGE>5</sdfield></span>/<span style="background: #c0c0c0"><sdfield type=DOCSTAT subtype=PAGE format=PAGE>5</sdfield></span></p>
 </div>
 </body>
 </html>
